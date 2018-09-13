@@ -81,22 +81,6 @@ public class IOTS{
 		}
 	}
 
-	public Map<Integer,Map<String,List<Integer>>> getTransitions() {
-		return transitions;
-	}
-	
-	public List<String> getOutputs() {
-		return outputs;
-	}
-	
-	public List<String> getInputs() {
-		return inputs;
-	}
-	
-	public Integer getFirstState() {
-		return firstState;
-	}
-
 	public void extendMachine(int k){
 		int freeState = 0;
 		Map<Integer,Integer> copy = new HashMap<Integer,Integer>();
@@ -468,7 +452,7 @@ public class IOTS{
 		}
 	}
 	
-	public Map<Integer,Map<String,Integer>> determinize() {
+	public FDA determinize() {
 		Map<Integer,Map<String, Integer>> transitionsDet = new HashMap<Integer,Map<String,Integer>>();
 		List<Integer> finalStatesDet = new ArrayList<Integer>();
 		List<Integer> nonFinalStatesDet = new ArrayList<Integer>();
@@ -574,9 +558,7 @@ public class IOTS{
 			}
 			states2Explore.remove(0);
 		}
-		finalStates = finalStatesDet;
-		nonFinalStates = nonFinalStatesDet;
-		return transitionsDet;//returns the transitions of a finite automata, not an IOTS
+		return new FDA(firstState,finalStatesDet,nonFinalStatesDet,transitionsDet, inputs, outputs);
 	}
 	
 	public String toString() {

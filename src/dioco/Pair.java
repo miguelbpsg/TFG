@@ -24,6 +24,6 @@ public class Pair {
 	
 	@Override
 	public String toString() {
-		return m+"."+n;
+		return m+","+n;
 	}
 }
